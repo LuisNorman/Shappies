@@ -13,6 +13,7 @@ export class API {
 
     // add new user
     static registerUser(body) {
+        // alert("registering")
         // use back tick so we can use dynamic variables
         return fetch(`http://127.0.0.1:8000/api/users/`, {
             method: 'POST',

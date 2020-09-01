@@ -35,12 +35,16 @@ function Auth() {
     }, [token]) // this effect/function is fired off everytime a token gets set
 
     const registerClicked = () => {
-        API.registerUser({username, password}) // Add curly braces around so it can be a json object
+        API.registerUser({email, username, password}) // Add curly braces around so it can be a json object
         .then(() => loginClicked())
         .catch(error => console.log(error)) 
     }
 
-    const isDisabled = username.length === 0 || password.length === 0;
+    let isDisabled
+    if (isLoginView)
+        isDisabled = username.length === 0 || password.length === 0 
+    else
+        isDisabled = email.length === 0 || username.length === 0 || password.length === 0
     
 
     // // login or register when ENTER is pressed
@@ -52,27 +56,38 @@ function Auth() {
 
     return (
         <div className="App">
+
+            {/* NAVIGATION BAR  */}
             <div className="custom_navbar">
                 <nav className="navbar navbar-expand-md navbar-light bg-light">
-                    <a href="" className="navbar-brand">
-                        <header>Shappies</header>
-                        {/* <img src="images/logo.svg" height="28" alt="Shappies"></img> */}
-                    </a>
+                    {/* SHAPPIES LOGO */}
+                    <span>
+                        <a href="" className="navbar-brand">
+                            <header>Shappies</header>
+                            {/* <img src="images/logo.svg" height="28" alt="Shappies"></img> */}
+                        </a>
+                    </span>
+
                     <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
+
                     <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <div className="navbar-nav">
+                        
+                        <div className="navbar-nav ml-auto mr-auto">
+                            <input className="form-control search_box" type="text" placeholder="Search" aria-label="Search"/>
                         </div>
+                        <span>
                         <div className="navbar-nav ml-auto">
                             {isLoginView ? <a href="javascript:void(0);" onClick={() => setIsLoginView(false)} class="nav-item nav-link">Register</a> :""}
-                            {!isLoginView ? <a href="javascript:void(0);" onClick={() => setIsLoginView(true)}  class="nav-item nav-link">Login</a> :""}
-                        </div>
+                            {!isLoginView ? <a href="javascript:void(0);" onClick={() => setIsLoginView(true)}  className="nav-item nav-link">Login</a> :""}
+                        </div></span>
                     </div>
                 </nav>
             </div>
 
+            {/* LOGIN/REGISTRATION FORM */}
             <div className="login-container" >
                 <header className="App-header">
                     {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
@@ -85,7 +100,7 @@ function Auth() {
                         onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}/>
                     : 
                     // display email if register screen
-                    <input className="form-control" id="username" type="text" placeholder="Email" value={email}
+                    <input className="form-control" id="email" type="text" placeholder="Email" value={email}
                         onChange={evt => setEmail(evt.target.value)} onKeyDown={handleKeyDown}/>
                 }
                 
