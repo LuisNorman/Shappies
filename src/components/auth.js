@@ -2,6 +2,7 @@ import React, {useState,  useEffect} from 'react';
 import { API } from '../api-service';
 import { useCookies } from 'react-cookie';
 import '../App.css';
+import background from '../images/treadmills.jpg';
 
 function Auth() {
 
@@ -55,7 +56,10 @@ function Auth() {
     }
 
     return (
+        // <div className="App" styles={{backgroundImage: `url(${background})`}}>
+        // <div className="App" styles={{backgroundImage: "url(" + background + ")"}}>
         <div className="App">
+                                      
 
             {/* NAVIGATION BAR  */}
             <div className="custom_navbar">
@@ -64,7 +68,6 @@ function Auth() {
                     <span>
                         <a href="" className="navbar-brand">
                             <header>Shappies</header>
-                            {/* <img src="images/logo.svg" height="28" alt="Shappies"></img> */}
                         </a>
                     </span>
 
@@ -85,7 +88,7 @@ function Auth() {
                         </div></span>
                     </div>
                 </nav>
-            </div>
+            </div> {/*END CUSTOM_NAV BAR*/}
 
             {/* LOGIN/REGISTRATION FORM */}
             <div className="login-container" >
@@ -143,7 +146,28 @@ function Auth() {
                 
                 {invalidLogin ? <p className="invalid_login">Invalid login/register information. Please try again!</p> : ''}
             
-            </div>
+                <div className="welcome_terms">
+                    {/* <p>Welcome</p> */}
+                    {/* <em>Copyright &copy; 2020, Shappies</em>
+                    <ul>
+                        <li><a href="">Terms and conditions</a></li>
+                        <li><a href="#">How to use.</a></li>
+                        <li><a href="#">No data collection policy.</a></li>
+                        <li><a href="#">Footer Link</a></li>
+                        <li><a href="#">Footer Link</a></li>
+                        <li><a href="#">Footer Link</a></li>
+                    </ul> */}
+                    {/* <span><a href="terms">Terms and conditions</a></span>
+                    <span><a href="terms">How to use</a></span> */}
+                    <span className="welcome_span">
+                        <ul>
+                            <li><a href="terms">Terms and Conditions</a></li>
+                            <li><a href="howToUse">Welcome Guide</a></li>
+                        </ul>
+                    </span>
+                </div>
+            
+            </div> {/*END LOGIN_CONTAINER*/}
         </div>
         
     )

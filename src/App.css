@@ -3,12 +3,25 @@
   min-height: 100vh;
   background-color: #ffffff;
   color: #282c34;
+  background-image: url("images/gym.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
 .App-header {
-  text-align: center;
-  font-size: calc(10px + 2vmin);
-  color: #282c34;
+  /* text-align: center; */
+  /* font-size: calc(10px + 2vmin); */
+  /* color: #282c34; */
+  margin-top: 55px;
+  margin-bottom: 25px;
+  /* font-style: Courier; */
+}
+
+.App-header h1 {
+  color:#f57a7a;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .layout {
@@ -25,9 +38,15 @@
 .login-container {
   margin: 0 auto;
   text-align: center;
-  display: block;
+  /* display: block; */
   margin-top: 100px;
-  /* border: 3px solid #f57a7a; */
+  width: 500px;
+  height: 450px;
+  border: 0.5px solid;
+  border-radius: 10px;
+  background-color: #fff2f2;
+  border-color: lightgray;
+  position: relative; /* needed to keep welcome terms at bottom of div */
 }
 
 .login-container input {
@@ -48,7 +67,7 @@
   border: 2.5px solid lightgray;
   cursor: default;
   background: #f5f7fa;
-  
+  margin-top: 10px;
 }
 
 .login-container button:active {
@@ -72,19 +91,6 @@
   margin-left: auto;
 }
 
-.orange {
-  color: orange;
-}
-
-.purple {
-  color: purple;
-}
-
-/*color of register/login h1*/
-.App-header h1 { 
-  color:#f57a7a;
-}
-
 .custom_navbar header{
   color:#f57a7a;
 
@@ -92,7 +98,38 @@
 
 .welcome_links {
   cursor: pointer;
+  color : #328cd1;
 }
+
+.welcome_terms {
+  display: table-cell;
+  
+}
+
+
+.welcome_terms a {
+
+}
+
+.welcome_terms ul {
+  bottom: 0;
+  position: absolute;
+}
+
+.welcome_terms li {
+  float: left;
+  margin-right: 35px;
+}
+
+.welcome_terms a {
+  color: gray;
+}
+
+
+.welcome_span {
+  display: inline-block;
+  padding: 60px;
+} 
 
 .custom_navbar {
   font-size: 1.25rem;
@@ -102,6 +139,8 @@
   padding: 15px;
   color:red;
 }
+
+
 .fa-sign-out-alt {
   position: absolute;
   top: 20px;
