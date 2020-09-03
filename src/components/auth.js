@@ -7,6 +7,8 @@ import { API } from '../api-service';
 import { useCookies } from 'react-cookie';
 import '../App.css';
 import NavbarPage from '../components/navbar_welcome'
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn, MDBIcon, MDBModalFooter } from 'mdbreact';
+
 
 function Auth() {
 
@@ -61,76 +63,89 @@ function Auth() {
 
     return (
         <div className="App">
-            <div className="Auth">   
-                                         
-                <NavbarPage/>
+            <NavbarPage/>
 
-                {/* LOGIN/REGISTRATION FORM */}
-                <div className="login-container" >
-                    <header className="Welcome-header">
-                        {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
-                        
-                    </header>
+            {/* <div className="row"> */}
 
-                    {isLoginView ? 
-                        // display user or email if login screen
-                        <input className="form-control" id="username" type="text" placeholder="Username or Email" value={username}
-                            onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}/>
-                        : 
-                        // display email if register screen
-                        <input className="form-control" id="email" type="text" placeholder="Email" value={email}
-                            onChange={evt => setEmail(evt.target.value)} onKeyDown={handleKeyDown}/>
-                    }
-                    
-                    {isLoginView ? 
-                        // display password if on login screen
-                        <input className="form-control" id="password" type="password" placeholder="Password" value={password}
-                            onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
-                        </input> 
-                        : 
-                        // Display username if register active
-                        <input className="form-control" id="username" type="text" placeholder="Username" value={username}
-                            onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}>
-                        </input>
-                    }
+                {/* LEFT COLUMN */}
+                {/* <div className="column welcome_logo"> */}
+                    <h1 className="welcome_logo">Shappies</h1>
+                    <p className="welcome_message">Where friends and fitness are gained</p>
+                {/* </div> End Column */}
 
-                    {isLoginView ? 
-                            <span><span className="login_message">Don't have an account? </span><label onClick={() => setIsLoginView(false)}>  <u className="welcome_links">Register here!</u></label></span>
+                {/* RIGHT COLUMN/AUTH */}
+                <div className=" Auth">   
+                    {/* LOGIN/REGISTRATION FORM */}
+                    <div className="login-container" >
+
+                        <header className="Welcome-header">
+                            {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
+                        </header>
+    
+                        {isLoginView ? 
+                            // display user or email if login screen
+                            // text-line was formerly form-control
+                            <input className="text-line" id="username" type="text" placeholder="Username or Email" value={username}
+                                onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}/>
+                            
                             : 
-                            <input className="form-control" id="password" type="password" placeholder="Password" value={password}
+                            // display email if register screen
+                            <input className="form-control" id="email" type="text" placeholder="Email" value={email}
+                                onChange={evt => setEmail(evt.target.value)} onKeyDown={handleKeyDown}/>
+                        }
+                        
+                        {isLoginView ? 
+                            // display password if on login screen
+                            <input className="text-line" id="password" type="password" placeholder="Password" value={password}
                                 onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
+                            </input> 
+                            : 
+                            // Display username if register active
+                            <input className="form-control" id="username" type="text" placeholder="Username" value={username}
+                                onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}>
                             </input>
-                    }
+                        }
+    
+                        {isLoginView ? 
+                                <span><span className="login_message">Don't have an account? </span><label onClick={() => setIsLoginView(false)}>  <u className="welcome_links">Register here!</u></label></span>
+                                : 
+                                <input className="form-control" id="password" type="password" placeholder="Password" value={password}
+                                    onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
+                                </input>
+                        }
+                        
+                        {isLoginView ?
+                            <br/> : 
+                            <span><span className="login_message">Already have an account? </span><label onClick={() => setIsLoginView(true)}> <u className="welcome_links">Login here!</u></label></span>
+                        }
+                        
+                        {isLoginView ? 
+                            <button type="button" class="btn btn-primary btn-lg" disabled onClick={loginClicked} disabled={isDisabled}>Login</button> 
+                            : 
+                            <br/>
+                        }
+    
+                        {isLoginView ? 
+                            ""
+                            :
+                            <button type="button" class="btn btn-primary btn-lg" disabled onClick={registerClicked} disabled={isDisabled}>Register</button>
+                        }
+                        
+                        {invalidLogin ? <p className="invalid_login">Invalid login/register information. Please try again!</p> : ''}
                     
-                    {isLoginView ?
-                        <br/> : 
-                        <span><span className="login_message">Already have an account? </span><label onClick={() => setIsLoginView(true)}> <u className="welcome_links">Login here!</u></label></span>
-                    }
-                    
-                    {isLoginView ? 
-                        <button type="button" class="btn btn-primary btn-lg" disabled onClick={loginClicked} disabled={isDisabled}>Login</button> 
-                        : 
-                        <br/>
-                    }
+                        <div className="welcome_terms">
+                            <span className="welcome_span">
+                                <ul>
+                                    <li><a href="terms">Terms and Conditions</a></li>
+                                    <li><a href="howToUse">Welcome Guide</a></li>
+                                </ul>
+                            </span>
+                        </div> 
+                    </div> {/*END LOGIN_CONTAINER*/}
+                </div> {/*End Column/AUTH */}
+            {/* </div> End row */}
 
-                    {isLoginView ? 
-                        ""
-                        :
-                        <button type="button" class="btn btn-primary btn-lg" disabled onClick={registerClicked} disabled={isDisabled}>Register</button>
-                    }
-                    
-                    {invalidLogin ? <p className="invalid_login">Invalid login/register information. Please try again!</p> : ''}
-                
-                    <div className="welcome_terms">
-                        <span className="welcome_span">
-                            <ul>
-                                <li><a href="terms">Terms and Conditions</a></li>
-                                <li><a href="howToUse">Welcome Guide</a></li>
-                            </ul>
-                        </span>
-                    </div>
-                </div> {/*END LOGIN_CONTAINER*/}
-            </div> {/*END AUTH*/}
+            
         </div>
         
     )

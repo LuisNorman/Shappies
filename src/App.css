@@ -1,23 +1,40 @@
 .App {
   /* padding: 20px; */
   min-height: 100vh;
-  /* background-color: #ffffff; */
   /* color: #282c34; */
   /* background-color: #f5f6f7; */
-  background-color: white;
+  background-color: rgb(6, 23, 29);
+  /* background-color: #ffffff; */
 
 }
-
-/* background of login/register */
-.Auth {
-  /* background-image: url("images/gym.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  min-height: 100vh; */
+.row {
+  /* background-color: blue; */
 }
 
+.column {
+  flex: 50%;
+  flex-direction: column;
+}
+
+/* SHAPPIES LOGO */
+.welcome_logo {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 75px;
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: -50px;
+} 
+
+/* message for logo */
+.welcome_message {
+  color: white;
+  margin-top: 55px;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* Login/Register label */
 .Welcome-header {
   /* text-align: center; */
   /* font-size: calc(10px + 2vmin); */
@@ -25,12 +42,11 @@
   margin-top: 40px;
   margin-bottom: 25px;
   /* font-style: Courier; */
-}
-
-.Welcome-header h1 {
   color:#d1d6de;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
 
 .layout {
   display: grid;
@@ -43,11 +59,12 @@
 }
 
 
+
 .login-container {
   margin: 0 auto;
   text-align: center;
   /* display: block; */
-  margin-top: 100px;
+  margin-top: 40px;
   width: 450px;
   height: 450px;
   border: 0.5px solid;
@@ -64,18 +81,18 @@
   font-size: 1rem;
   width: 275px;
   margin-bottom: 15px;
+  /* color: black */
 }
 
 .login-container button {
-  /* color:#f57a7a; */
   width: 140px;
   display: inline-block;
   font-weight: bold;
   font-size: 1rem;
-  border: 2.5px solid lightgray;
   cursor: default;
-  background: #f5f7fa;
-  margin-top: 10px;
+  color:#282c34;
+  background-color: white;
+  margin-top: 15px;
 }
 
 .login-container button:active {
@@ -87,19 +104,34 @@
   cursor: not-allowed;
 }
 
-/* Style the search box inside the navigation bar */
-.custom_navbar input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-}
-
 /* Register/login here */
 .welcome_links {
   cursor: pointer;
   color : #328cd1;
 }
+
+.navmenu {
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+}
+
+/* Nav links grouped  */
+.navlinks {
+  font-size: 1.2rem;
+  padding-left: 75px
+}
+
+.search {
+  width: 200px;
+}
+
+.form-inline .form-control {
+  display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
 
 /* Terms and conditions */
 .welcome_terms {
@@ -112,11 +144,14 @@
   position: absolute;
 }
 
+/* terms and cond bullet pts */
 .welcome_terms li {
   float: left;
+  color: #ccd3de;
   margin-right: 35px;
 }
 
+/* terms and conditions link */
 .welcome_terms a {
   color: #ccd3de;
 }
@@ -131,6 +166,18 @@
 
 .custom_navbar {
   font-size: 1.25rem;
+}
+
+  .text-line {
+    background-color: transparent;
+    color: #eeeeee;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #eeeeee 1px;
+    padding: 3px 10px;
 }
 
 .invalid_login {
