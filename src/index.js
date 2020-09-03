@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Route, BrowserRouter } from 'react-router-dom';
 import Auth from './components/auth'
+import Logout from './components/Logout'
 import { CookiesProvider } from 'react-cookie'
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
         <BrowserRouter>
           <Route exact path="/" component={Auth}/>
           <Route exact path="/home" component={App}/>
+          <Route exact path="/logout" component={Logout}/>
         </BrowserRouter>
       </CookiesProvider>
   </React.StrictMode>

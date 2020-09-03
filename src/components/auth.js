@@ -1,8 +1,12 @@
+/*
+Handles the login/welcome page
+*/
+
 import React, {useState,  useEffect} from 'react';
 import { API } from '../api-service';
 import { useCookies } from 'react-cookie';
 import '../App.css';
-import background from '../images/treadmills.jpg';
+import NavbarPage from '../components/navbar_welcome'
 
 function Auth() {
 
@@ -12,7 +16,9 @@ function Auth() {
     const [ isLoginView, setIsLoginView] = useState(true);
     const [invalidLogin, setInvalidLogin] = useState(false)
 
+
     const [token, setToken] = useCookies(['mr-token']) // movie rater token = name of cookie
+    
     
     const loginClicked = () => {
         API.loginUser({username, password}) // Add curly braces around so it can be a json object
@@ -25,12 +31,10 @@ function Auth() {
         if (resp.token) setToken('mr-token', resp.token)
         else {
             setInvalidLogin(true)
-            console.log("Here: "+resp)
         }
     }
 
     useEffect(() => {
-        console.log(token);
         // token object is empty so check for if token object has an attribute token (token.token) or token[mr-token]
         if (token['mr-token']) window.location.href = '/home';
     }, [token]) // this effect/function is fired off everytime a token gets set
@@ -56,118 +60,77 @@ function Auth() {
     }
 
     return (
-        // <div className="App" styles={{backgroundImage: `url(${background})`}}>
-        // <div className="App" styles={{backgroundImage: "url(" + background + ")"}}>
         <div className="App">
-                                      
+            <div className="Auth">   
+                                         
+                <NavbarPage/>
 
-            {/* NAVIGATION BAR  */}
-            <div className="custom_navbar">
-                <nav className="navbar navbar-expand-md navbar-light bg-light">
-                    {/* SHAPPIES LOGO */}
-                    <span>
-                        <a href="" className="navbar-brand">
-                            <header>Shappies</header>
-                        </a>
-                    </span>
-
-                    <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-
-                    <div className="collapse navbar-collapse" id="navbarCollapse">
+                {/* LOGIN/REGISTRATION FORM */}
+                <div className="login-container" >
+                    <header className="Welcome-header">
+                        {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
                         
-                        <div className="navbar-nav ml-auto mr-auto">
-                            <input className="form-control search_box" type="text" placeholder="Search" aria-label="Search"/>
-                        </div>
-                        <span>
-                        <div className="navbar-nav ml-auto">
-                            {isLoginView ? <a href="javascript:void(0);" onClick={() => setIsLoginView(false)} class="nav-item nav-link">Register</a> :""}
-                            {!isLoginView ? <a href="javascript:void(0);" onClick={() => setIsLoginView(true)}  className="nav-item nav-link">Login</a> :""}
-                        </div></span>
-                    </div>
-                </nav>
-            </div> {/*END CUSTOM_NAV BAR*/}
+                    </header>
 
-            {/* LOGIN/REGISTRATION FORM */}
-            <div className="login-container" >
-                <header className="App-header">
-                    {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
-                    
-                </header>
-
-                {isLoginView ? 
-                    // display user or email if login screen
-                    <input className="form-control" id="username" type="text" placeholder="Username or Email" value={username}
-                        onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}/>
-                    : 
-                    // display email if register screen
-                    <input className="form-control" id="email" type="text" placeholder="Email" value={email}
-                        onChange={evt => setEmail(evt.target.value)} onKeyDown={handleKeyDown}/>
-                }
-                
-                {isLoginView ? 
-                    // display password if on login screen
-                    <input className="form-control" id="password" type="password" placeholder="Password" value={password}
-                        onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
-                    </input> 
-                    : 
-                    // Display username if register active
-                    <input className="form-control" id="username" type="text" placeholder="Username" value={username}
-                        onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}>
-                    </input>
-                }
-
-                {isLoginView ? 
-                        <span>Don't have an account? <label onClick={() => setIsLoginView(false)}>  <u className="welcome_links">Register here!</u></label></span>
+                    {isLoginView ? 
+                        // display user or email if login screen
+                        <input className="form-control" id="username" type="text" placeholder="Username or Email" value={username}
+                            onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}/>
                         : 
+                        // display email if register screen
+                        <input className="form-control" id="email" type="text" placeholder="Email" value={email}
+                            onChange={evt => setEmail(evt.target.value)} onKeyDown={handleKeyDown}/>
+                    }
+                    
+                    {isLoginView ? 
+                        // display password if on login screen
                         <input className="form-control" id="password" type="password" placeholder="Password" value={password}
                             onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
+                        </input> 
+                        : 
+                        // Display username if register active
+                        <input className="form-control" id="username" type="text" placeholder="Username" value={username}
+                            onChange={evt => setUsername(evt.target.value)} onKeyDown={handleKeyDown}>
                         </input>
-                }
-                
-                {isLoginView ?
-                    <br/> : 
-                    <span>Already have an account? <label onClick={() => setIsLoginView(true)}> <u className="welcome_links">Login here!</u></label></span>
-                }
-                
-                {isLoginView ? 
-                    <button type="button" class="btn btn-primary btn-lg" disabled onClick={loginClicked} disabled={isDisabled}>Login</button> 
-                    : 
-                    <br/>
-                }
+                    }
 
-                {isLoginView ? 
-                    ""
-                    :
-                    <button type="button" class="btn btn-primary btn-lg" disabled onClick={registerClicked} disabled={isDisabled}>Register</button>
-                }
+                    {isLoginView ? 
+                            <span><span className="login_message">Don't have an account? </span><label onClick={() => setIsLoginView(false)}>  <u className="welcome_links">Register here!</u></label></span>
+                            : 
+                            <input className="form-control" id="password" type="password" placeholder="Password" value={password}
+                                onChange={evt => setPassword(evt.target.value)} onKeyDown={handleKeyDown}>
+                            </input>
+                    }
+                    
+                    {isLoginView ?
+                        <br/> : 
+                        <span><span className="login_message">Already have an account? </span><label onClick={() => setIsLoginView(true)}> <u className="welcome_links">Login here!</u></label></span>
+                    }
+                    
+                    {isLoginView ? 
+                        <button type="button" class="btn btn-primary btn-lg" disabled onClick={loginClicked} disabled={isDisabled}>Login</button> 
+                        : 
+                        <br/>
+                    }
+
+                    {isLoginView ? 
+                        ""
+                        :
+                        <button type="button" class="btn btn-primary btn-lg" disabled onClick={registerClicked} disabled={isDisabled}>Register</button>
+                    }
+                    
+                    {invalidLogin ? <p className="invalid_login">Invalid login/register information. Please try again!</p> : ''}
                 
-                {invalidLogin ? <p className="invalid_login">Invalid login/register information. Please try again!</p> : ''}
-            
-                <div className="welcome_terms">
-                    {/* <p>Welcome</p> */}
-                    {/* <em>Copyright &copy; 2020, Shappies</em>
-                    <ul>
-                        <li><a href="">Terms and conditions</a></li>
-                        <li><a href="#">How to use.</a></li>
-                        <li><a href="#">No data collection policy.</a></li>
-                        <li><a href="#">Footer Link</a></li>
-                        <li><a href="#">Footer Link</a></li>
-                        <li><a href="#">Footer Link</a></li>
-                    </ul> */}
-                    {/* <span><a href="terms">Terms and conditions</a></span>
-                    <span><a href="terms">How to use</a></span> */}
-                    <span className="welcome_span">
-                        <ul>
-                            <li><a href="terms">Terms and Conditions</a></li>
-                            <li><a href="howToUse">Welcome Guide</a></li>
-                        </ul>
-                    </span>
-                </div>
-            
-            </div> {/*END LOGIN_CONTAINER*/}
+                    <div className="welcome_terms">
+                        <span className="welcome_span">
+                            <ul>
+                                <li><a href="terms">Terms and Conditions</a></li>
+                                <li><a href="howToUse">Welcome Guide</a></li>
+                            </ul>
+                        </span>
+                    </div>
+                </div> {/*END LOGIN_CONTAINER*/}
+            </div> {/*END AUTH*/}
         </div>
         
     )
