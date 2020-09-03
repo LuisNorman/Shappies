@@ -4,6 +4,7 @@ This page handles the logout page
 
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import NavbarPage from './navbar';
 
 function Logout() {
 
@@ -23,10 +24,18 @@ function Logout() {
     
       <div className="logout_container">
         
-          <h4>Are you sure?</h4>
+        
+          <NavbarPage/>
+
+          <div className="logout-content">
+            <h4>Are you sure you want to logout?</h4>
+            <div className="btn-group">
+              <button onClick={logoutUser} type="button" class="btn btn-danger logout-buttons">Yes</button>
+              {/* <button a href="home">No</button> */}
+              <button a href="home" type="button" class="btn btn-outline-secondary logout-buttons">No</button>
+            </div>
+          </div>
           
-          <button onClick={logoutUser}>Yes</button>
-          <span><a href="home" >No</a></span>
       </div>
   )
 

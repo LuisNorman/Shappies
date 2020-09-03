@@ -58,8 +58,6 @@
   line-height: 45px; /* increase height of nav bar */
 }
 
-
-
 .login-container {
   margin: 0 auto;
   text-align: center;
@@ -102,6 +100,22 @@
   color: #282c34;
   background-color: #ffffff;
   cursor: not-allowed;
+}
+
+
+.logout-content {
+  padding-top: 250px;
+  text-align: center;
+  
+}
+
+.logout-buttons {
+  /* width: 120px; */
+        /* height: 30px; */
+  /* margin: 0 auto; */
+  /* padding: 50px; */
+  width: 200px;
+  margin:15px;
 }
 
 /* Register/login here */
