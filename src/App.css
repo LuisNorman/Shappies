@@ -3,8 +3,9 @@
   min-height: 100vh;
   /* color: #282c34; */
   /* background-color: #f5f6f7; */
-  background-color: rgb(6, 23, 29);
-  /* background-color: #ffffff; */
+  /* background-color: rgb(6, 23, 29); */
+  background-color: #262626;
+  /* background-color: white; */
 
 }
 .row {
@@ -20,7 +21,7 @@
 .welcome_logo {
   text-align: center;
   vertical-align: middle;
-  margin-top: 75px;
+  margin-top: 50px;
   color: white;
   font-size: 3.5rem;
   margin-bottom: -50px;
@@ -133,7 +134,7 @@
 /* Nav links grouped  */
 .navlinks {
   font-size: 1.2rem;
-  padding-left: 75px
+  padding-left: 100px;
 }
 
 .search {

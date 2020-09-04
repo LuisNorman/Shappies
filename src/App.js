@@ -4,7 +4,7 @@ This page handles the homepage
 
 
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './Home.css'
 import { useCookies } from 'react-cookie';
 import {useFetch} from './hooks/useFetch';
 import NavbarPage from './components/navbar'
@@ -32,7 +32,7 @@ function App() {
   if (error) return <h1>Error loading homepage: {error}</h1>
 
   return (
-    <div className="App">
+    <div className="Home">
         <NavbarPage/>
       <div className="layout"> 
         </div>

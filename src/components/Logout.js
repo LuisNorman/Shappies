@@ -19,6 +19,9 @@ function Logout() {
     deleteToken(['mr-token']);    
   }
   
+  const goBack = () => {
+    window.history.back();
+  }
 
   return (
     
@@ -32,7 +35,7 @@ function Logout() {
             <div className="btn-group">
               <button onClick={logoutUser} type="button" class="btn btn-danger logout-buttons">Yes</button>
               {/* <button a href="home">No</button> */}
-              <button a href="home" type="button" class="btn btn-outline-secondary logout-buttons">No</button>
+              <button onClick={goBack} type="button" class="btn btn-outline-secondary logout-buttons">No</button>
             </div>
           </div>
           
